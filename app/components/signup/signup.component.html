@@ -1,0 +1,227 @@
+<section class="signupForm">
+  <div class="signup mt-2">
+    <div class="row justify-content-center">
+      <div class="col-md-4">
+        <div class="card p-4">
+          <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+            <div class="heading-wrapper">
+              <h4 class="text-center mt-2">Sign Up</h4>
+            </div>
+            <div class="firstname mb-4">
+              <label class="form-label"
+                >First Name<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter first name"
+                formControlName="firstname"
+              />
+              <div
+                *ngIf="
+                  signUpForm.controls['firstname'].touched ||
+                  (signUpForm.controls['firstname'].invalid &&
+                    signUpForm.controls['firstname'].dirty)
+                "
+              >
+                <div
+                  *ngIf="signUpForm.controls['firstname']?.errors?.['required']"
+                  class="text-danger"
+                >
+                  first name is required*
+                </div>
+                <div
+                  *ngIf="signUpForm.controls['firstname']?.errors?.['pattern']"
+                  class="text-danger"
+                >
+                  Enter valid first name*
+                </div>
+              </div>
+            </div>
+            <div class="lastname mb-4">
+              <label class="form-label"
+                >Last Name<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter last name"
+                formControlName="lastname"
+              />
+              <div
+                *ngIf="
+                  signUpForm.controls['lastname'].touched ||
+                  (signUpForm.controls['lastname'].invalid &&
+                    signUpForm.controls['lastname'].dirty)
+                "
+              >
+                <div
+                  *ngIf="signUpForm.controls['lastname']?.errors?.['required']"
+                  class="text-danger"
+                >
+                  last name is required*
+                </div>
+                <div
+                  *ngIf="signUpForm.controls['lastname']?.errors?.['pattern']"
+                  class="text-danger"
+                >
+                  Enter valid last name*
+                </div>
+              </div>
+            </div>
+            <div class="mobile mb-4">
+              <label class="form-label"
+                >Mobile No<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter mobile number"
+                formControlName="mobile"
+              />
+              <div
+                *ngIf="
+                  signUpForm.controls['mobile'].touched ||
+                  (signUpForm.controls['mobile'].invalid &&
+                    signUpForm.controls['mobile'].dirty)
+                "
+              >
+                <div
+                  *ngIf="signUpForm.controls['mobile']?.errors?.['required']"
+                  class="text-danger"
+                >
+                  Mobile Number is required*
+                </div>
+                <div
+                  *ngIf="signUpForm.controls['mobile']?.errors?.['pattern']"
+                  class="text-danger"
+                >
+                  Enter valid mobile number*
+                </div>
+              </div>
+            </div>
+            <div class="email mb-4">
+              <label class="form-label"
+                >Email<span class="text-danger">*</span></label
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Enter email"
+                formControlName="email"
+              />
+              <div
+                *ngIf="
+                  signUpForm.controls['email'].touched ||
+                  (signUpForm.controls['email'].invalid &&
+                    signUpForm.controls['email'].dirty)
+                "
+              >
+                <div
+                  *ngIf="signUpForm.controls['email']?.errors?.['required']"
+                  class="text-danger font-italic"
+                >
+                  Email is required *
+                </div>
+                <div
+                  *ngIf="signUpForm.controls['email']?.errors?.['pattern']"
+                  class="text-danger font-italic"
+                >
+                  Enter valid email *
+                </div>
+              </div>
+            </div>
+            <div class="password mb-4">
+              <label class="form-label"
+                >Password<span class="text-danger">*</span></label
+              >
+              <input
+                type="password"
+                class="form-control input-group"
+                placeholder="Enter password"
+                formControlName="password"
+              />
+              
+              <div
+                *ngIf="
+                  signUpForm.controls['password'].touched ||
+                  (signUpForm.controls['password'].dirty &&
+                    signUpForm.controls['password'].invalid)
+                "
+              >
+                <div
+                  *ngIf="signUpForm.controls['password']?.errors?.['required']"
+                  class="text-danger"
+                >
+                  Password is required *
+                </div>
+                <div
+                  *ngIf="signUpForm.controls['password']?.errors?.['minlength']"
+                  class="text-danger"
+                >
+                  Minimum length is 8 characters*
+                </div>
+              </div>
+            </div>
+            <div class="cpassword mb-4">
+              <label class="form-label"
+                >Confirm Password<span class="text-danger">*</span></label
+              >
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Enter confirm password"
+                formControlName="cpassword"
+              />
+              
+              <div
+                *ngIf="
+                  signUpForm.controls['cpassword'].touched ||
+                  (signUpForm.controls['cpassword'].dirty &&
+                    signUpForm.controls['cpassword'].invalid)
+                "
+              >
+                <div
+                  *ngIf="signUpForm.controls['cpassword']?.errors?.['required']"
+                  class="text-danger"
+                >
+                  Password is required *
+                </div>
+                <div
+                  *ngIf="signUpForm.controls['cpassword']?.errors?.['minlength']"
+                  class="text-danger"
+                >
+                  Minimum length is 8 characters*
+                </div>
+                <div
+                  *ngIf="
+                    signUpForm.controls['password']?.value !=
+                    signUpForm.controls['cpassword']?.value
+                  "
+                  class="text-danger"
+                >
+                  password match with confirm password
+                </div>
+              </div>
+            </div>
+            <div class="button mb-3">
+              <button
+                class="btn btn-primary"
+                [disabled]="!signUpForm.valid"
+                (click)="signUp()"
+              >
+                Sign UP
+              </button>
+              <span class="float-right"
+                >Already Register?<a class="text-underline " (click)="login()"
+                  >Click to login</a
+                  
+                ></span
+              >
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

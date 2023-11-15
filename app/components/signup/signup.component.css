@@ -1,0 +1,6 @@
+.float-right {
+    float: right !important;
+    color: #007bff;
+    text-decoration: none;
+    background-color: transparent;
+}

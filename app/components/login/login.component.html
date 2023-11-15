@@ -1,0 +1,84 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-5">
+      <div class="card mt-5 p-4">
+        <div class="text-center">
+          <h1>Login</h1>
+          <h6>please enter email & password !!</h6>
+        </div>
+        <form [formGroup]="loginForm" >
+          <div class="mb-3">
+            <label for="Email address">Email address</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="email"
+              placeholder="Enter Your Email Address"
+            />
+
+            <div
+              *ngIf="
+                loginForm.controls['email'].touched ||
+                (loginForm.controls['email'].dirty &&
+                  loginForm.controls['email'].invalid)
+              "
+              class="invalid"
+            >
+              <div
+                *ngIf="loginForm.controls['email']?.errors?.['required']"
+                class="text-danger font-italic"
+              >
+                Email is Required
+              </div>
+              <div
+                *ngIf="loginForm.controls['email']?.errors?.['pattern']"
+                class="text-danger font-italic"
+              >
+                Enter Valid Email
+              </div>
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="Password">Password</label>
+            <input
+              type="password"
+              formControlName="password"
+              class="form-control"
+              placeholder="Enter Your Password"
+            />
+            <div
+              *ngIf="
+                loginForm.controls['password'].touched ||
+                (loginForm.controls['password']?.dirty &&
+                  loginForm.controls['password']?.invalid)
+              "
+              class="invalid"
+            >
+              <div
+                *ngIf="loginForm.controls['password']?.errors?.['required']"
+                class="text-danger font-italic"
+              >
+                Password is Required
+              </div>
+              <div
+                *ngIf="loginForm.controls['password']?.errors?.['minlength']"
+                class="text-danger font-italic"
+              >
+                Password is Minimum 8 Characters
+              </div>
+            </div>
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            (click)="login()"
+            [disabled]="!loginForm.valid"
+          >
+            Login
+          </button>
+          <a class="float-right" routerLink="/signup">New User? Click to signup!!</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

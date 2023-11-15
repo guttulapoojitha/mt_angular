@@ -1,0 +1,513 @@
+<div class="modal-body"style="justify-content-center">
+  <form [formGroup]="formValue">
+    <div class="container">
+      <div class="row ww-image justify-content-center">
+        <div class="col-md-6" style="align-self: center">
+          <label for="firstName">First Name</label>
+          <input
+            formControlName="firstName"
+            id="firstName"
+            class="form-control"
+            placeholder="Enter First Name.."
+            required
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="formValue.controls?.['firstName']?.touched && (formValue.controls?.['firstName']?.errors?.['required'])"
+          >
+            <i>Please enter First Name*</i>
+          </small>
+          <div
+            class="form-text text-danger"
+            *ngIf="formValue.controls?.['firstName']?.errors?.['pattern']"
+          >
+            Please Enter Alphabetics only *
+          </div>
+
+          <label class="label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            placeholder="Enter Your lastName"
+          />
+
+          <label class="label">Email<span class="as">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Email"
+            placeholder="Enter Your Gmail"
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="formValue.controls?.['Email']?.touched && formValue.controls?.['Email']?.errors?.['required']"
+          >
+            <i>Please enter Email*</i>
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="formValue.controls?.['Email']?.errors?.['pattern']"
+            >Please enter mail as per pattern*</small
+          >
+
+          <label class="label">Mobile<span class="as">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Mobile"
+            placeholder="Enter Your Mobile Number "
+          />
+          <div
+            *ngIf="formValue.controls?.['Mobile']?.touched  &&formValue .controls?.['Mobile']?.invalid"
+            class="alert alert-danger"
+          >
+            <div
+              *ngIf="formValue.controls?.['Mobile']?.errors?.['required']"
+            >
+              Please enter mobile number
+            </div>
+            <div
+              *ngIf="formValue.controls?.['Mobile']?.errors?.['pattern']"
+            >
+              Mobile number is not 10 digit
+            </div>
+          </div>
+        </div>
+      </div>
+        <div class="row ml-5" style="position: absolute;
+        right: 33%;
+        margin-top: 20px;">
+          <div class="col-12">
+        <button
+          type="button"
+          (click)="cancel()"
+          class="btn btn-secondary"
+          style="margin-right: 8px"
+        >
+          Cancel
+        </button>
+        <!-- <input
+          type="submit"
+          *ngIf="showAdd"
+          (click)="postEmployeeDetails()"
+          [disabled]="!formValue.valid"
+          class="btn btn-primary mx-2"
+          value="Save"
+        /> -->
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          (click)="updateEmployeeDetails()"
+          class="btn btn-primary"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </div>
+  </form>
+
+</div>
+
+<!-- <div class="container text-center">
+<div class="row">
+<div class="col">
+1 of 2
+</div>
+<div class="col">
+2 of 2
+</div>
+</div>
+
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container" style="margin-top: 100px">
+<div class="row">
+<div class="col-12">
+<h2 class="text-info float-left">User List</h2>
+<!-- <img src="D:\design\2.png" alt="" /> -->
+
+<!-- <button
+  type="button"
+  (click)="addButtonClickFunction()"
+  class="btn btn-info mb-3 float-right"
+  data-toggle="modal"
+  data-target="#exampleModal"
+>
+  <i class="fasfa-plus">New User</i>
+</button>
+</div> -->
+
+<!-- <div class="col-12">
+<table class="table table-sm table-stripped">
+  <thead>
+    <tr class="bg-info text-white text-center">
+      <th>ID</th>
+
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Mobile Number</th>
+      <th>Photo</th>
+      <th>Action</th>
+    </tr>
+
+    <tr
+      *ngFor="
+        let row of employeeData
+          | paginate : { itemsPerPage: 5, currentPage: p }
+      "
+      class="text-center"
+    >
+      <td>{{ row.id }}</td>
+      <td>{{ row.firstName }}</td>
+      <td>{{ row.lastName }}</td>
+      <td>{{ row.Email }}</td>
+      <td>{{ row.Mobile }}</td>
+      <td><img src="{{ row.Photo }}" /></td>
+      <td class="text-right">
+        <button
+          (click)="updateEmployee(row)"
+          class="btn btn-outline-info pl-3 pr-3 mx-2"
+          data-toggle="modal"
+          data-target="#exampleModal"
+        >
+          <i class="fas fa-pencil"></i> View
+        </button>
+        <button
+          (click)="deleteEmployee(row.id)"
+          class="btn btn-outline-danger pl-3"
+        >
+          <i class="fas fa-trash"></i> Delete
+        </button>
+      </td>
+    </tr>
+  </thead>
+</table>
+<div class="pagination justify-content-end">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+</div>
+</div>
+</div>  -->
+
+<!-- <div
+class="modal fade"
+id="exampleModal"
+role="dialog"
+aria-labelledby="exampleModalLabel"
+>
+<div class="modal-dialog" style="max-width: 1000px">
+<div class="modal-content">
+<div class="modal-header">
+  <h5
+    class="modal-title text-primary"
+    *ngIf="showAddTitle"
+    id="exampleModalLabel"
+  >
+    Add New Data
+  </h5>
+  <h5
+    class="modal-title text-primary"
+    *ngIf="showUpdateTitle"
+    id="exampleModalLabel"
+  >
+    Update Data
+  </h5>
+  <button
+    type="button"
+    class="close"
+    data-dismiss="modal"
+    aria-label="Close"
+  >
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formValue">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" style="align-self: center">
+          <label class="label">Image<span class="as">*</span></label>
+          <img
+            [src]="imageSrc"
+            style="max-width: 100px; max-height: 100px"
+          />
+
+          <input
+            name="imageUrl"
+            type="file"
+            class="form-control"
+            placeholder="Select your image "
+            accept="image/*"
+            (change)="handleInputChange($event)"
+          />
+        </div>
+        <div class="col-md-6">
+          <label for="firstName">First Name</label>
+          <input
+            formControlName="firstName"
+            id="firstName"
+            class="form-control"
+            placeholder="Enter First Name.."
+            required
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="formValue.controls?.['firstName']?.touched && (formValue.controls?.['firstName']?.errors?.['required'])"
+          >
+            <i>Please enter First Name*</i>
+          </small>
+          <div
+            class="form-text text-danger"
+            *ngIf="formValue.controls?.['firstName']?.errors?.['pattern']"
+          >
+            Please Enter Alphabetics only *
+          </div>
+
+          <label class="label">Last Name</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="lastName"
+            placeholder="Enter Your lastName"
+          />
+
+          <label class="label">Email<span class="as">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Email"
+            placeholder="Enter Your Gmail"
+          />
+          <small
+            class="form-text text-danger"
+            *ngIf="formValue.controls?.['Email']?.touched && formValue.controls?.['Email']?.errors?.['required']"
+          >
+            <i>Please enter Email*</i>
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="formValue.controls?.['Email']?.errors?.['pattern']"
+            >Please enter mail as per pattern*</small
+          >
+
+          <label class="label">Mobile<span class="as">*</span></label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="Mobile"
+            placeholder="Enter Your Mobile Number "
+          />
+          <div
+            *ngIf="formValue.controls?.['Mobile']?.touched  &&formValue .controls?.['Mobile']?.invalid"
+            class="alert alert-danger"
+          >
+            <div
+              *ngIf="formValue.controls?.['Mobile']?.errors?.['required']"
+            >
+              Please enter mobile number
+            </div>
+            <div
+              *ngIf="formValue.controls?.['Mobile']?.errors?.['pattern']"
+            >
+              Mobile number is not 10 digit
+            </div>
+          </div>
+        </div>
+      </div>
+      <div style="float: right; margin-top: 25px">
+        <button
+          type="button"
+          id="cancel"
+          class="btn btn-secondary"
+          data-dismiss="modal"
+          style="margin-right: 8px"
+        >
+          Cancel
+        </button>
+        <input
+          type="submit"
+          *ngIf="showAdd"
+          (click)="postEmployeeDetails()"
+          [disabled]="!formValue.valid"
+          class="btn btn-primary mx-2"
+          value="Save"
+        />
+        <button
+          type="button"
+          *ngIf="showUpdate"
+          (click)="updateEmployeeDetails()"
+          class="btn btn-primary"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
+</div>
+</div>
+</div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class=""                     >
+    <form [formGroup]="formValue">
+      <div class="container">
+        <div class="row ww-image justify-content-center">
+          <div class="col-md-6 vr" style="align-self: center">
+            <label for="firstName">First Name</label>
+            <input
+              formControlName="firstName"
+              id="firstName"
+              class="form-control"
+              placeholder="Enter First Name.."
+              required
+            />
+            <small
+              class="form-text text-danger"
+              *ngIf="formValue.controls?.['firstName']?.touched && (formValue.controls?.['firstName']?.errors?.['required'])"
+            >
+              <i>Please enter First Name*</i>
+            </small>
+            <div
+              class="form-text text-danger"
+              *ngIf="formValue.controls?.['firstName']?.errors?.['pattern']"
+            >
+              Please Enter Alphabetics only *
+            </div>
+  
+            <label class="label">Last Name</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="lastName"
+              placeholder="Enter Your lastName"
+            />
+  
+            <label class="label">Email<span class="as">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="Email"
+              placeholder="Enter Your Gmail"
+            />
+            <small
+              class="form-text text-danger"
+              *ngIf="formValue.controls?.['Email']?.touched && formValue.controls?.['Email']?.errors?.['required']"
+            >
+              <i>Please enter Email*</i>
+            </small>
+            <small
+              class="text-danger"
+              *ngIf="formValue.controls?.['Email']?.errors?.['pattern']"
+              >Please enter mail as per pattern*</small
+            >
+  
+            <label class="label">Mobile<span class="as">*</span></label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="Mobile"
+              placeholder="Enter Your Mobile Number "
+            />
+            <div
+              *ngIf="formValue.controls?.['Mobile']?.touched  &&formValue .controls?.['Mobile']?.invalid"
+              class="alert alert-danger"
+            >
+              <div *ngIf="formValue.controls?.['Mobile']?.errors?.['required']">
+                Please enter mobile number
+              </div>
+              <div *ngIf="formValue.controls?.['Mobile']?.errors?.['pattern']">
+                Mobile number is not 10 digit
+              </div>
+            </div>
+            <label class="label">Image<span class="as">*</span></label>
+            <img
+              [src]="imageSrc"
+              style="
+                max-width: 300px;
+                max-height: 300px;
+                position: absolute;
+                right: -338px;
+                top: 8%;
+              "
+            />
+  
+            <input
+              name="imageUrl"
+              type="file"
+              class="form-control"
+              placeholder="Select your image "
+              accept="image/*"
+              (change)="handleInputChange($event)"
+            />
+          </div>
+        </div>
+        <div style="float: right; margin-top: 25px">
+          <button
+            type="button"
+            id="cancel"
+            (click)="navigateToDashboard()"
+            class="btn btn-secondary"
+            data-dismiss="modal"
+            style="margin-right: 8px"
+          >
+            Cancel
+          </button>
+          <!-- <input
+              type="submit"
+              *ngIf="showAdd"
+              (click)="postEmployeeDetails()"
+              [disabled]="!formValue.valid"
+              class="btn btn-primary mx-2"
+              value="Save"
+            /> -->
+          <!-- <button
+            type="button"
+            *ngIf="showUpdate"
+            (click)="updateEmployeeDetails()"
+            class="btn btn-primary"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </form>
+  </div> -->
+   
