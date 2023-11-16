@@ -28,6 +28,7 @@ export class EmployeeDashboardComponent implements OnInit {
   showUpdateTitle!: boolean;
   showAddTitle!: boolean;
   validatefirstName: any;
+  // component!: { value: { firstName: string; lastName: string; Email: string; Mobile: string; }; reset: jasmine.Spy<jasmine.Func>; };
 
 
 
@@ -159,6 +160,7 @@ export class EmployeeDashboardComponent implements OnInit {
       }
     })
   }
+  
   DeleteData(id: any): void {
     this.api.deleteData(id).subscribe((res) => {
       this.getAllEmployee()

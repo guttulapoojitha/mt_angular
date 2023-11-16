@@ -12,6 +12,9 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./view.component.css']
 })
 export class ViewComponent implements OnInit {
+  updateData(updateData: any) {
+    throw new Error('Method not implemented.');
+  }
 
   employeeModelObj: EmployeeModel = new EmployeeModel();
 
@@ -54,14 +57,14 @@ export class ViewComponent implements OnInit {
       alert('invalid format');
       return;
     }
-    reader.onload = this._handleReaderLoaded.bind(this);
+    // reader.onload = this._handleReaderLoaded.bind(this);
     reader.readAsDataURL(file);
   }
-  _handleReaderLoaded(e: any) {
-    let reader = e.target;
-    this.imageSrc = reader.result;
-    console.log(e)
-  }
+  // _handleReaderLoaded(e: any) {
+  //   let reader = e.target;
+  //   this.imageSrc = reader.result;
+  //   console.log(e)
+  // }
   paramsId!: any;
   ngOnInit(): void {
 

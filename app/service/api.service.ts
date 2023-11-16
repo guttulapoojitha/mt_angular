@@ -44,11 +44,9 @@ export class ApiService {
 
   postusers(data: any) {
     return this.http.post('http://localhost:3000/logindetails', data)
-    // return this.http.post('https://reqres.in/api/login', data)
   }
 
   postUsers(data: any) {
-    // return this.http.post('https://reqres.in/api/register', data)
     return this.http.post('http://localhost:3000/users', data)
 
   }

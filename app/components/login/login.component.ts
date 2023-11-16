@@ -11,9 +11,6 @@ import { ApiService } from 'src/app/service/api.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  httpMock(httpMock: any, arg1: string) {
-    throw new Error('Method not implemented.');
-  }
 
   public loginForm!: FormGroup
   constructor(private fromBuilder: FormBuilder, private http: HttpClient, private router: Router) { }
@@ -27,54 +24,25 @@ export class LoginComponent implements OnInit {
   }
 
   // userName: any;
-  // login() {
-  //   this.http.get<any>("http://localhost:3000/logindetails",)
-  //     .subscribe(res => {
-  //       const user = res.find((tera: any) => {
-
-  //         return tera.email === this.loginForm.value.email && tera.password === this.loginForm.value.password
-  //       });
-  //       if (user) {
-  //         alert("Login Success");
-  //         console.log(res)
-  //         this.loginForm.reset();
-  //         this.router.navigate(['employee-dashboard'])
-  //       } else {
-  //         alert("user not found")
-
-  //       }
-  //     }, err => {
-  //       alert("Something Went Wrong")
-  //     })
-  // }
-
   login() {
-    if (this.loginForm.invalid) {
-      // Handle form validation errors
-      alert('Please fill in all required fields.');
-      return;
-    }
-
-    this.http.get<any>('http://localhost:3000/logindetails').subscribe(
-      (res: any) => {
+    this.http.get<any>("http://localhost:3000/logindetails",)
+      .subscribe(res => {
         const user = res.find((tera: any) => {
-          return tera.email === this.loginForm.value.email && tera.password === this.loginForm.value.password;
-        });
 
+          return tera.email === this.loginForm.value.email && tera.password === this.loginForm.value.password
+        });
         if (user) {
-          alert('Login Success');
-          console.log(res);
+          alert("Login Success");
+          console.log(res)
           this.loginForm.reset();
-          this.router.navigate(['employee-dashboard']);
+          this.router.navigate(['employee-dashboard'])
         } else {
-          alert('User not found');
+          alert("user not found")
+
         }
-      },
-      (err) => {
-        // Handle HTTP error
-        alert('Failed to fetch data. Please try again later.');
-      }
-    );
+      }, err => {
+        alert("Something Went Wrong")
+      })
   }
 
   logindetails() {
